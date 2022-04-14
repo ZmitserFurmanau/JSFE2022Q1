@@ -1,4 +1,4 @@
-@import url(../node_modules/normalize.css/normalize.css);
+//@import url(../node_modules/normalize.css/normalize.css);
 @font-face {
   font-family: "georgia-regular";
   src: url("../../assets/fonts/georgia/georgia-regular.ttf");
@@ -356,7 +356,7 @@ body {
     .btn-arrow {
       width: 52px;
       height: 52px;
-      border: 2px solid #f1cdb3;
+      border: 2px solid $color-primary;
       border-radius: 100px;
       background-color: transparent;
       color: $color-dark-3xl;
@@ -417,7 +417,7 @@ body {
           font: {
             family: "georgia-regular";
             style: normal;
-            weight: 400px;
+            weight: 400;
             size: 20px;
           }
           line-height: 23px;

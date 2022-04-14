@@ -1,4 +1,4 @@
-@import url(../node_modules/normalize.css/normalize.css);
+//@import url(../node_modules/normalize.css/normalize.css);
 @font-face {
   font-family: "georgia-regular";
   src: url("../../assets/fonts/georgia/georgia-regular.ttf");
@@ -390,6 +390,11 @@ header {
     .btn-active {
       background-color: $color-primary;
       border-style: none;
+      &:hover {
+        background-color: $color-primary;
+        border-style: none;
+        cursor: default;
+      }
     }
   }
 }

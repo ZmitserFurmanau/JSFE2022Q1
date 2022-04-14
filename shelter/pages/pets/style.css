@@ -1,4 +1,3 @@
-@import url(../node_modules/normalize.css/normalize.css);
 @font-face {
   font-family: "georgia-regular";
   src: url("../../assets/fonts/georgia/georgia-regular.ttf");
@@ -382,6 +381,12 @@ header {
 .pets-container .navigation .btn-active {
   background-color: #f1cdb3;
   border-style: none;
+}
+
+.pets-container .navigation .btn-active:hover {
+  background-color: #f1cdb3;
+  border-style: none;
+  cursor: default;
 }
 
 .footer {
