@@ -267,6 +267,7 @@ header {
 }
 
 .pets-container .cards-container .card:hover .btn-secondary {
+  cursor: pointer;
   border-style: none;
   background-color: #fddcc4;
 }
