@@ -74,6 +74,14 @@ h1,h2,h3,h4,h5,h6
     @media (max-width: $max)
         width: 100%
 
+.overlay
+    transition: .2s
+    &.active
+        position: fixed
+        width: 100vw
+        height: 100vh
+        background-color: rgba(41,41,41,.6)
+        
 .header
     position: sticky
     top: 0
@@ -101,6 +109,15 @@ h1,h2,h3,h4,h5,h6
                 letter-spacing: $letter-spacing
                 font-weight: 400
                 margin-bottom: 8px
+                a
+                    font-family: $Georgia
+                    color: $color_dark_l
+                    font-size: 32px
+                    letter-spacing: 0.06em
+                    font-weight: 400
+                    @media (max-width: $medium)
+                        position: relative
+                        z-index: 3
             span
                 display: inline-block
                 font-family: $Arial
@@ -109,20 +126,37 @@ h1,h2,h3,h4,h5,h6
                 letter-spacing: .1em
                 font-size: 13px
                 line-height: 14.95px
+                @media (max-width: $medium)
+                        position: relative
+                        z-index: 3
         .burger
             display: none
             @media (max-width: $medium)
-                display: flex
+                display: block 
                 width: 30px
                 height: 22px
                 background: url('../../assets/icons/icon-burger-our-pets.svg') no-repeat center center
-                margin-right: 43px
+                margin-right: 53px
+                position: relative
+                z-index: 3
+                transition: .5s
+                cursor: pointer
         .navbar
             width: 36.9%
             @media (max-width: $max)
                 width: 63%
                 @media (max-width: $medium)
-                    display: none
+                    position: fixed
+                    top: 0
+                    right: -110%
+                    width: 320px
+                    height: 100vh
+                    background-color: $color-dark-3xl
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    transition: .5s
+                    z-index: 2
         .navbar-list
             display: flex
             column-gap: 35px
@@ -144,11 +178,28 @@ h1,h2,h3,h4,h5,h6
                     left: 0
                     height: 3px
                     background-color: $color_primary
-            a
-                transition: .1s
-                &:hover
-                    color: $color-dark-3xl
-
+            @media (max-width: $medium)
+                    flex-direction: column
+                    align-items: center
+                    row-gap: 43px
+            li
+                @media ( max-width: $medium )
+                    margin: 0
+                a
+                    transition: .1s
+                    @media (max-width: $medium)
+                        font-size: 32px
+                    &:hover
+                        cursor: pointer
+                        color: $color_white
+        .navbar-active
+            @media (max-width: $medium)
+                right: 0
+        .burger-active
+            @media (max-width: $medium)
+                position: fixed
+                right: 0px
+                transform: rotate(90deg)
 main
     background-color: $color-light-l
     .content
