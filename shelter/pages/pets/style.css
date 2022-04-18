@@ -144,7 +144,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   font-family: Arial, sans-serif;
   padding-left: 3px;
-  color: #292929;
+  color: #545454;
   letter-spacing: .1em;
   font-size: 13px;
   line-height: 14.95px;
@@ -231,7 +231,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .wrapper .navbar-list .active {
-  color: #292929;
+  color: #FFFFFF;
   position: relative;
   padding-bottom: 7px;
 }
@@ -290,7 +290,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 767px) {
   .header .wrapper .burger-active {
     position: fixed;
-    right: 0px;
+    right: 10px;
     -webkit-transform: rotate(90deg);
             transform: rotate(90deg);
   }
