@@ -1,35 +1,23 @@
-console.log(` 
-Score: 40 / 40 \n
+'use strict'
 
-Создана страница Our Pets. \n
-    Есть блок Header: \n
-        Есть логотип: +1. Логотип есть и работает как ссылка на страницу main: +1. \n
-        Есть панель навигации: +4. Панель навигации есть и она интерактивная: +1. Рекомендуется использовать <nav>. \n
-        Элемент About the shelter работает как ссылка на страницу main: +1. \n
-        Элемент Our pets подсвечен: +1. \n
-        Элемент Help the shelter работает как якорная ссылка на блок Help страницы main: +1. \n
-        Элемент Contacts работает как якорная ссылка на блок Footer: +1. \n
-        На странице есть элемент <h1>: +1. Элемент есть в количестве одного: +1. \n
-        Фон не сильно отличается от того, что на макете: +1. \n
-    Есть блок Our Friends: \n
-        Есть кнопки пагинации: +2. Кнопка есть и при этом: \n
-            Кнопки разного цвета или фона: +2. \n
-            Кнопки расположены в верной последовательности: +2. \n
-            Кнопки "влево" интерактивные: +1. \n
-            Кнопки "вправо" интерактивные: +1. \n
-            На кружочке страницы Есть цифры, или там единица: +1. \n
-            Кружочек страницы не интерактивный: +1. \n
-        Есть карточки с питомцами и при этом: \n
-            Сеточная структура элементов не нарушена: +2. \n
-            Количество карточек соотвествует макету: +2. \n
-            Струтура карточек не нарушена: +2. \n
-            Карточки интерактивные: +2. \n
-            Кнопки Learn more меняют цвет при наведении на карточку: +2. \n
-    Есть блок Footer: \n
-        Сеточная структура элементов не нарушена: +2. \n
-        Элемент email работает как ссылка на почтовый сервис: +2. \n
-        Элемент телефон работает как ссылка на сервис звонков: +2. \n
-        Все элементы локация работают как ссылка на google maps: +1. \n
-        Есть картинки собаки: +1. Картинка собаки есть и не сильно смещена, или не накладывается на текст или другие блоки: +1. \n
-        Фон не сильно отличается от того, что на макете (имеется ввиду смещенная картинка или градиент): +1. \n
-`);
+function toggleBurger() {
+    const btn = document.querySelector('.burger');
+    const overlay = document.querySelector('.overlay');
+    function toggleActiveClass(classNameBlock,toggleClassName) {
+        const block = document.querySelector(classNameBlock);
+        if(block.classList.contains(toggleClassName)) block.classList.remove(toggleClassName)
+        else block.classList.add(toggleClassName)
+    }
+    btn.addEventListener('click', () => {
+        toggleActiveClass('.navbar', 'navbar-active');
+        toggleActiveClass('.burger', 'burger-active');
+        toggleActiveClass('.overlay', 'active');
+        toggleActiveClass('.logo', 'active');
+    })
+    overlay.addEventListener('click', (e) => {
+        toggleActiveClass('.navbar', 'navbar-active');
+        toggleActiveClass('.burger', 'burger-active');
+        toggleActiveClass('.overlay', 'active');
+    })
+}
+toggleBurger()
