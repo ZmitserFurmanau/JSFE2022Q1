@@ -29,9 +29,11 @@ a
 
 html
     scroll-behavior: smooth
-    @media (max-width: $medium)
-        max-width: 100vw
-        overflow-x: hidden
+
+body.active
+    overflow-y: hidden
+    .logo
+        opacity: 0
 
 *
     box-sizing: border-box
@@ -78,10 +80,126 @@ h1,h2,h3,h4,h5,h6,p
     transition: .2s
     &.active
         position: fixed
+        z-index: 4
         width: 100vw
         height: 100vh
         background-color: rgba(41,41,41,.6)
-        
+    &:hover
+        cursor: pointer
+
+.popup
+    display: flex
+    width: 900px
+    height: 500px
+    background-color: $color-light-s
+    border-radius: 20px
+    position: fixed
+    top: 50%
+    left: 50%
+    z-index: 10
+    transform: translateX(-50%) translateY(-50%)
+    @media (max-width: $max)
+        width: 630px
+        height: auto
+        min-height: 350px
+        @media (max-width: $medium)
+            width: 240px
+    &_close-btn
+        position: absolute
+        right: -40px
+        top: -50px
+        width: 50px
+        height: 50px
+        border: 2px solid $color_primary
+        border-radius: 100px
+        background-color: transparent
+        transform: rotate(45deg)
+        cursor: pointer
+        transition: .2s
+        @media (max-width: $medium)
+            right: -25px
+        &:hover
+            background-color: $color-primary-light
+        &::after
+            content: ''
+            background-color: black
+            position: absolute
+            top: 50%
+            left: 50%
+            width: 17px
+            height: 2px
+            transform: rotate(0deg) translateX(-50%) translateY(-50%)
+        &::before
+            content: ''
+            background-color: black
+            position: absolute
+            top: 50%
+            left: 50%
+            width: 2px
+            height: 17px
+            transform: rotate(0deg) translateX(-50%) translateY(-50%)
+    &_img
+        width: 500px
+        @media (max-width: $max)
+            width: 350px
+            height: 350px
+            @media (max-width: $medium)
+                display: none
+        img
+            width: 500px
+            border-radius: 10px
+            @media (max-width: $max)
+                width: 350px
+                height: 350px
+    &_description
+        margin-left: 29px
+        margin-top: 50px
+        margin-right: 20px
+        display: flex
+        flex-direction: column
+        row-gap: 40px
+        font-family: $Georgia
+        @media (max-width: $max)
+            margin-top: 10px
+            margin-left: 11px
+            row-gap: 20px
+            @media (max-width: $medium)
+                margin: 10px
+        &_breed
+            @media (max-width: $medium)
+                text-align: center
+            .name-animal
+                +for_h3
+                color: black
+                margin-bottom: 10px
+            p
+                font-size: 20px
+                line-height: 23px
+        &_text
+            @media (max-width: $max)
+                font-size: 13px   
+                @media (max-width: $medium)
+                    text-align: justify         
+        &_list
+            display: flex
+            flex-direction: column
+            row-gap: 10px
+            margin: 0
+            @media (max-width: $max)
+                padding-bottom: 10px
+            .list-item
+                font-weight: bold
+                position: relative
+                margin-left: 20px
+                .dinamic
+                    font-weight: normal
+                &::before
+                    color: $color_primary
+                    content: '●'
+                    position: absolute
+                    top: 0px
+                    left: -20px
+
 .start-screen
     background: url('../../assets/images/noise_transparent@2x.png'),
     linear-gradient(120deg,#5B483A 10%, #211F20 60%)
@@ -107,14 +225,14 @@ h1,h2,h3,h4,h5,h6,p
                 background: url('../../assets/icons/icon-burger-main.svg') no-repeat center center
                 margin-right: 53px
                 position: relative
-                z-index: 3
+                z-index: 8
                 transition: .5s
                 cursor: pointer
-            
         .logo
             display: flex
             flex-direction: column
             justify-content: space-between
+            transition: .4s
             h1
                 a
                     font-family: $Georgia
@@ -138,11 +256,53 @@ h1,h2,h3,h4,h5,h6,p
                     @media (max-width: $medium)
                         position: relative
                         z-index: 3
+        .navbar.navbar-active .fake-logo
+            opacity: 1 
         .navbar
             width: 36.9%
+            position: relative
             @media (max-width: $max)
                 width: 62.7%
                 max-width: 444px
+                @media (max-width: $medium)
+                    position: fixed
+                    top: 0
+                    right: -110%
+                    width: 320px
+                    height: 100vh
+                    background-color: $color-dark-3xl
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    transition: .5s
+                    z-index: 6
+            .fake-logo
+                transition: cubic-bezier(0.42, 0, 0.58, 1.02) .5s
+                opacity: 0
+                display: none
+                .cozy
+                    font-family: $Georgia
+                    color: $color_primary
+                    font-size: 32px
+                    letter-spacing: 0.06em
+                    font-weight: 400
+                    a
+                        color: inherit
+                .small-text
+                    font-family: $Arial
+                    font-size: 13px
+                    letter-spacing: 0.116em
+                    font-weight: 400
+                    display: inline-block
+                    padding-left: 4px
+                    padding-top: 9px
+                    letter-spacing: .1em
+                @media (max-width: $medium)
+                    display: block
+                    opacity: 0
+                    position: absolute    
+                    top: 30px
+                    left: 10px        
             &-list
                 display: flex
                 font-size: 15px
@@ -176,27 +336,15 @@ h1,h2,h3,h4,h5,h6,p
                             left: 0
                             height: 3px
                             background-color: $color_primary
-            @media (max-width: $medium)
-                position: fixed
-                top: 0
-                right: -110%
-                width: 320px
-                height: 100vh
-                background-color: $color-dark-3xl
-                display: flex
-                justify-content: center
-                align-items: center
-                transition: .5s
-                z-index: 2
-                
         .navbar-active
             @media (max-width: $medium)
                 right: 0
         .burger-active
             @media (max-width: $medium)
-                position: fixed
+                position: absolute
                 right: 0px
                 transform: rotate(90deg)
+                z-index: 8
     &_content
         display: flex
         justify-content: space-between
@@ -353,7 +501,7 @@ h1,h2,h3,h4,h5,h6,p
                     font-size: 25px
                     line-height: 32.5px
                     width: 100%
-        .our-friends_slider            
+        .our-friends_slider
             width: 100%
             display: flex
             justify-content: space-between
@@ -361,33 +509,58 @@ h1,h2,h3,h4,h5,h6,p
             .btn-left
                 transform: rotate(-180deg)
             @media (max-width: $max)
-                column-gap: 13px
-                justify-content: center
-                @media (max-width: $medium)
-                    flex-direction: row
-                    flex-wrap: wrap
-                    column-gap: 80px
-                    row-gap: 20px
+                    column-gap: 13px
                     justify-content: center
-                    .btn-left
-                        order: 1
-                        margin-left: 20px
-                    .btn-right
-                        margin-right: 20px
-                        order: 2
-            &_cards
+                    @media (max-width: $medium)
+                        flex-direction: row
+                        flex-wrap: wrap
+                        column-gap: 80px
+                        row-gap: 20px
+                        justify-content: center
+                        .btn-left
+                            order: 1
+                            margin-left: 20px
+                        .btn-right
+                            margin-right: 20px
+                            order: 2
+            &_wrapper
                 display: flex
                 width: 82.5%
-                justify-content: center
-                column-gap: 90px     
+                justify-content: space-between
+                align-items: center
+                position: relative
+                overflow: hidden
+                height: 435px   
                 @media (max-width: $max)
-                    width: auto
+                    justify-content: center   
+                    width: 82.5%        
+                    @media (max-width: $medium)
+                        width: 80%
+            &_cards
+                display: flex
+                width: 100%
+                justify-content: center
+                column-gap: 90px 
+                position: absolute
+                top: 0
+                left: 0
+                transition: .3s
+                &:nth-child(1)
+                    left: -200%
+                &:nth-child(2)
+                    left: -110%
+                &:nth-child(4)
+                    left: 110%
+                &:nth-child(5)
+                    left: 200%                        
+                @media (max-width: $max)
+                    width: 100%
                     flex-grow: 1
                     column-gap: 40px
                     justify-content: space-around
                     @media (max-width: $medium)
                         flex-grow: 0
-                        width: 80%
+                        width: 100%
                         column-gap: normal
                         justify-content: space-around                                         
                 &_card
@@ -400,6 +573,7 @@ h1,h2,h3,h4,h5,h6,p
                     flex-direction: column
                     align-items: center
                     transition: .2s
+                    cursor: pointer
                     @media (max-width: $max)
                         &:last-child
                             display: none
