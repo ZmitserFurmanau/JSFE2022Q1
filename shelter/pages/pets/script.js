@@ -241,7 +241,7 @@ function createSlider(size = 'max', cards, slides, cardsOnSlide) {
     SLIDER_LIST_WRAPPER.append(NEW_SLIDER_LIST);
 
     const SLIDER_LIST = document.querySelectorAll('.slider-list .slider-item');
-    //changePageNumber(PAGE_OBJECT[size]);
+    changePageNumber(PAGE_OBJECT[size]);
     showPage(SLIDER_LIST, PAGE_OBJECT[size] - 1);
     if(size == 'max' && PAGE_OBJECT[size] == 1) {
         disablePrevAndEnableNext();
@@ -267,7 +267,7 @@ function createNewCard(i) {
 }
 function createStartSlider() {
     disableBtn('prev');
-    //disableBtn('prev-max');
+    disableBtn('prev-max');
     if(window.innerWidth >= 1280) createSlider(...MAX);
     else if(window.innerWidth >= 768 && window.innerWidth < 1280) createSlider(...MEDIUM);
     else if(window.innerWidth < 768) createSlider(...SMALL);
