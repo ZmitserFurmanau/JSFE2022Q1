@@ -5,13 +5,17 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const EslingPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index.ts'),
+    entry: path.resolve(__dirname, './src/index'),
     mode: 'development',
     module: {
         rules: [
             {
-                test: [/\.css$/i, /\.ts$/i],
-                use: ['style-loader', 'css-loader', 'ts-loader'],
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.ts$/i,
+                use: 'ts-loader',
             },
         ],
     },
