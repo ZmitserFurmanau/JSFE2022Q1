@@ -1,11 +1,11 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const EslingPlugin = require('eslint-webpack-plugin');
+import { resolve as _resolve } from 'path';
+import { merge } from 'webpack-merge';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import EslingPlugin from 'eslint-webpack-plugin';
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index'),
+    entry: _resolve(__dirname, './src/index'),
     mode: 'development',
     module: {
         rules: [
@@ -24,11 +24,11 @@ const baseConfig = {
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, '../dist'),
+        path: _resolve(__dirname, '../dist'),
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
+            template: _resolve(__dirname, './src/index.html'),
             filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
@@ -36,7 +36,7 @@ const baseConfig = {
     ],
 };
 
-module.exports = ({ mode }) => {
+export default ({ mode }) => {
     const isProductionMode = mode === 'prod';
     const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
 
