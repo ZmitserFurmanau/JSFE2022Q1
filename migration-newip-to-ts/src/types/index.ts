@@ -1,39 +1,32 @@
 /* eslint-disable prettier/prettier */
-export interface ISources {
-    status: string;
-    id: string;
-    name: string;
-    sources: {
-        description: string;
-        url: string;
-        category: string;
-        language: string;
-        country: string;
-    };
-}
-
 export interface INews {
     status: string;
-    title: string;
-    author: string;
-    publishedAt: string;
-    url: string;
-    description: string;
-    urlToImage: string;
-    sources: {
-        id: string;
-        name: string;
-        description: string;
-        category: string;
-        language: string;
-        country: string;
-    };
-    articles: {
-        id: string;
-        name: string;
-        description: string;
-        category: string;
-        language: string;
-        country: string;
-    };
+    totalResults: number;
+    articles: [
+        {
+            author: string;
+            content: string;
+            description: string;
+            publishedAt: string;
+            source: { id: string; name: string };
+            title: string;
+            url: string;
+            urlToImage: string;
+        }
+    ];
+}
+
+export interface ISources {
+    status: string;
+    sources: [
+        {
+            category: string;
+            country: string;
+            description: string;
+            id: string;
+            language: string;
+            name: string;
+            url: string;
+        }
+    ];
 }

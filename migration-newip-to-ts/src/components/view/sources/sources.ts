@@ -2,29 +2,30 @@ import { ISources } from '../../../types';
 import './sources.css';
 
 class Sources {
-    draw(data: Array<ISources>) {
-        const fragment = document.createDocumentFragment();
-        const sourceItemTemp = <HTMLTemplateElement>document.querySelector('#sourceItemTemp');
+    draw(data: ISources) {
+        if (data['sources']) {
+            const fragment = document.createDocumentFragment(),
+                sourceItemTemp = <HTMLTemplateElement>document.querySelector('#sourceItemTemp'),
+                sourcesDocument = document.querySelector('.sources');
 
-        data.forEach((item: ISources) => {
-            const sourceClone = <Element>sourceItemTemp.content.cloneNode(true),
-                sourceItemName = sourceClone.querySelector('.source__item-name'),
-                sourceItem = sourceClone.querySelector('.source__item');
+            data['sources'].forEach((item) => {
+                const sourceClone = <Element>sourceItemTemp.content.cloneNode(true),
+                    sourceItemName = sourceClone.querySelector('.source__item-name'),
+                    sourceItem = sourceClone.querySelector('.source__item');
 
-            if (sourceItemName !== null) {
-                sourceItemName.textContent = item.name;
+                if (sourceItemName !== null) {
+                    sourceItemName.textContent = item.name;
+                }
+                if (sourceItem !== null) {
+                    sourceItem.setAttribute('data-source-id', item.id);
+                }
+
+                fragment.append(sourceClone);
+            });
+
+            if (sourcesDocument !== null) {
+                sourcesDocument.append(fragment);
             }
-            if (sourceItem !== null) {
-                sourceItem.setAttribute('data-source-id', item.id);
-            }
-
-            fragment.append(sourceClone);
-        });
-
-        const sourcesDocument = document.querySelector('.sources');
-
-        if (sourcesDocument !== null) {
-            sourcesDocument.append(fragment);
         }
     }
 }

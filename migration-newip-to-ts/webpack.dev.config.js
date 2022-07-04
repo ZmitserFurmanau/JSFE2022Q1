@@ -1,7 +1,10 @@
-import { resolve } from 'path';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
 
-export const mode = 'development';
-export const devtool = 'inline-source-map';
-export const devServer = {
-    static: resolve(__dirname, '../dist'),
+module.exports = {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    devServer: {
+        static: path.resolve(__dirname, '../dist'),
+    },
 };
