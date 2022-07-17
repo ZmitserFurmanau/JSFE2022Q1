@@ -16,13 +16,13 @@
 
 ### Rolling Scopes School (2022Q1)
 
-Author: **[Zmitser Furmanau](https://github.com/zmitserfurmanau)**
-Task: **[Online Store](https://github.com/rolling-scopes-school/tasks/tree/master/tasks/online-store)**
-Repository: **[Private](https://github.com/rolling-scopes-school/zmitserfurmanau-JSFE2022Q1/tree/online-store)**
-Deployment: **[Online Pizza](https://rolling-scopes-school.github.io/zmitserfurmanau-JSFE2022Q1/online-store/src)**
+- Author: **[Zmitser Furmanau](https://github.com/zmitserfurmanau)**
+- Task: **[Online Store](https://github.com/rolling-scopes-school/tasks/tree/master/tasks/online-store)**
+- Repository: **[Private](https://github.com/rolling-scopes-school/zmitserfurmanau-JSFE2022Q1/tree/online-store)**
+- Deployment: **[Online Pizza](https://rolling-scopes-school.github.io/zmitserfurmanau-JSFE2022Q1/online-store)**
 
 #### Contacts:
 
-Telegram: **[@zmitserfurmanau](https://t.me/zmitserfurmanau)**
-Email: **[zmitserfurmanau@gmail.com](mailto:zmitserfurmanau@gmail.com)**
-Discord: **Źmićer Furmanaŭ#2429**
+- Telegram: **[@zmitserfurmanau](https://t.me/zmitserfurmanau)**
+- Email: **[zmitserfurmanau@gmail.com](mailto:zmitserfurmanau@gmail.com)**
+- Discord: **Źmićer Furmanaŭ#2429**
