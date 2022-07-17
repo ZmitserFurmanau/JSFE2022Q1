@@ -1,0 +1,132 @@
+@import '../../scss/variables';
+
+$width: 820px;
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid $gray-line;
+  padding-top: 30px;
+  margin-top: 30px;
+
+  @media (max-width: $width) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info {
+    display: flex;
+
+    @media (max-width: $width) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+
+    @media (max-width: $width) {
+      width: 315px;
+    }
+  }
+
+  .img {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h3 {
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 27px;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      font-size: 18px;
+      color: #8d8d8d;
+    }
+  }
+
+  .count {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+
+    b {
+      font-size: 22px;
+      margin: 0 10px;
+    }
+
+    svg {
+      font-size: 28px;
+      color: $orange;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $orange;
+        border-radius: 50%;
+
+        path:first-child {
+          fill: white;
+        }
+      }
+    }
+  }
+
+  .disabled {
+    pointer-events: none;
+
+    svg {
+      color: #787878;
+    }
+  }
+
+
+  .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    b {
+      font-weight: bold;
+      font-size: 22px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+
+  .remove {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    svg {
+      font-size: 28px;
+      color: darken($color: $gray-line, $amount: 15);
+      cursor: pointer;
+
+      &:hover {
+        color: darken($color: $gray-line, $amount: 80);
+        background-color: darken($color: $gray-line, $amount: 80);
+        border-radius: 50%;
+
+        path:first-child {
+          fill: white;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+@import './variables';
+@import './normalize';
+@import './button';
+
+body {
+  background-color: $background;
+  display: table;
+
+  @media (max-width: 500px) {
+    display: inline-block;
+    background-color: white;
+  }
+}
+
+::selection {
+  background: rgba($orange, 0.72)
+}
+
+.wrapper {
+  justify-content: center;
+  width: calc(100vw - 100px);
+  height: 100%;
+  background-color: #fff;
+  margin: 50px auto;
+  max-width: 1400px;
+  border-radius: 13px;
+
+  @media (max-width: 500px) {
+    width: auto;
+    margin: auto;
+    border-radius: 0;
+  }
+}
+
+.container {
+  width: $container-width;
+  margin: 0 auto;
+  padding-bottom: 50px;
+
+  &--cart {
+    max-width: 820px;
+    margin: 90px auto;
+
+    .content__title {
+      margin: 0;
+    }
+  }
+}
+
+.ant-pagination-item {
+  a {
+    &:hover {
+      color: $orange;
+    }
+  }
+
+  &:hover {
+    border-color: $orange;
+  }
+
+  &-link,
+  &-active {
+    border-color: $orange;
+
+    a {
+      color: $orange;
+    }
+  }
+}
+
+.ant-pagination-next,
+.ant-pagination-prev {
+  button {
+    &:hover {
+      color: $orange  !important;
+      border-color: $orange  !important;
+    }
+  }
+
+  button {
+    border-color: $orange;
+  }
+}
