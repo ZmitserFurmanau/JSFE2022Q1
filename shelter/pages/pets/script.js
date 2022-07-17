@@ -1,6 +1,5 @@
-'use strict'
-
-const data = JSON.parse(`[
+const DATA = JSON.parse(
+  `[
     {
       "name": "Jennifer",
       "img": "../../assets/images/pets-jennifer.png",
@@ -93,18 +92,52 @@ const data = JSON.parse(`[
 );
 
 function toggleActiveClass(classNameBlock,toggleClassName) {
-    const block = document.querySelector(classNameBlock);
-    if(block.classList.contains(toggleClassName)) block.classList.remove(toggleClassName)
-    else block.classList.add(toggleClassName)
+    const BLOCK = document.querySelector(classNameBlock);
+    if(BLOCK.classList.contains(toggleClassName)) BLOCK.classList.remove(toggleClassName)
+    else BLOCK.classList.add(toggleClassName)
 }
 function deleteActiveClass(classNameBlock,toggleClassName) {
-    const block = document.querySelector(classNameBlock);
-    if(block.classList.contains(toggleClassName)) block.classList.remove(toggleClassName)
+    const BLOCK = document.querySelector(classNameBlock);
+    if(BLOCK.classList.contains(toggleClassName)) BLOCK.classList.remove(toggleClassName)
 }
 function addActiveClass(classNameBlock,toggleClassName) {
-    const block = document.querySelector(classNameBlock);
-    if(!block.classList.contains(toggleClassName)) block.classList.add(toggleClassName)
+    const BLOCK = document.querySelector(classNameBlock);
+    if(!BLOCK.classList.contains(toggleClassName)) BLOCK.classList.add(toggleClassName)
 }
+
+function toggleBurger() {
+    const BTN = document.querySelector('.burger');
+    const OVERLAY = document.querySelector('.overlay');
+    const NAV_ITEMS = document.querySelectorAll('.navbar-list a');
+    const BURGER_OVERLAY = document.querySelector('.burger-overlay');
+    BTN.addEventListener('click', () => {
+        toggleActiveClass('.navbar', 'navbar-active');
+        toggleActiveClass('.burger', 'burger-active');
+        toggleActiveClass('.burger-overlay', 'active');
+        toggleActiveClass('body', 'active');
+        toggleActiveClass('.logo', 'active');
+    })
+    OVERLAY.addEventListener('click', (e) => {
+        deleteActiveClass('.overlay', 'active');    
+        deleteActiveClass('body', 'active'); 
+        closePopup();     
+    })
+    NAV_ITEMS.forEach(item => item.addEventListener('click', () => {
+        deleteActiveClass('.navbar', 'navbar-active');
+        deleteActiveClass('.burger', 'burger-active');        
+        deleteActiveClass('.burger-overlay', 'active'); 
+        deleteActiveClass('body', 'active'); 
+        deleteActiveClass('.logo', 'active');
+    }))
+    BURGER_OVERLAY.addEventListener('click', (e) => {
+        deleteActiveClass('.navbar', 'navbar-active');
+        deleteActiveClass('.burger', 'burger-active');
+        deleteActiveClass('.burger-overlay', 'active');    
+        deleteActiveClass('body', 'active'); 
+        deleteActiveClass('.logo', 'active');    
+    })
+}
+toggleBurger();
 
 function arrayToString(array) {
     let string = '';
@@ -115,38 +148,38 @@ function arrayToString(array) {
     return string;
 }
 function createPopup(name) {
-    const person = data.filter(item => item.name == name)[0];
-    const newBlock = document.createElement('div');
-    newBlock.classList.add('popup')
-    newBlock.innerHTML = `<button type="button" class="popup_close-btn"></button>     
+    const PERSON = DATA.filter(item => item.name == name)[0];
+    const NEW_BLOCK = document.createElement('div');
+    NEW_BLOCK.classList.add('popup')
+    NEW_BLOCK.innerHTML = `<button type="button" class="popup_close-btn"></button>     
         <div class="popup_img">
-            <img src=${person.img} alt=${person.name}>
+            <img src=${PERSON.img} alt=${PERSON.name}>
         </div>
         <div class="popup_description">            
             <div class="popup_description_breed">
-                <h4 class="name-animal">${person.name}</h4>
-                <p><span class="animal-type">${person.type}</span> - <span class="animal-breed">${person.breed}</span>
+                <h4 class="name-animal">${PERSON.name}</h4>
+                <p><span class="animal-type">${PERSON.type}</span> - <span class="animal-breed">${PERSON.breed}</span>
                 </p>
             </div>
-            <p class="popup_description_text">${person.description}</p>
+            <p class="popup_description_text">${PERSON.description}</p>
             <ul class="popup_description_list">
-                <li class="list-item">Age: <span class="dinamic age">${person.age}</span></li>
-                <li class="list-item">Inoculations: <span class="dinamic inoculations">${arrayToString(person.inoculations)}</span></li>
-                <li class="list-item">Diseases: <span class="diseases dinamic">${arrayToString(person.diseases)}</span></li>
-                <li class="list-item">Parasites: <span class="dinamic parasites">${arrayToString(person.parasites)}</span></li>
+                <li class="list-item">Age: <span class="dinamic age">${PERSON.age}</span></li>
+                <li class="list-item">Inoculations: <span class="dinamic inoculations">${arrayToString(PERSON.inoculations)}</span></li>
+                <li class="list-item">Diseases: <span class="diseases dinamic">${arrayToString(PERSON.diseases)}</span></li>
+                <li class="list-item">Parasites: <span class="dinamic parasites">${arrayToString(PERSON.parasites)}</span></li>
             </ul>
         </div>`;
-    document.querySelector('body').prepend(newBlock);
+    document.querySelector('body').prepend(NEW_BLOCK);
 }
 function addEventClosePopup() {
-    const closeBtn = document.querySelector('.popup_close-btn');
-    closeBtn.addEventListener('click', () => {
+    const CLOSE_BTN = document.querySelector('.popup_close-btn');
+    CLOSE_BTN.addEventListener('click', () => {
         closePopup();
     })    
 }
 function addEventOpenPopup() {
-    const slider = document.querySelector('.wrapper-slider');
-    slider.addEventListener('click', (e) => {        
+    const SLIDER = document.querySelector('.wrapper-slider');
+    SLIDER.addEventListener('click', (e) => {        
         let card = e.target.closest('.card');
         if(e.target.classList.contains('card') || card) {
             createPopup(card.dataset.name);
@@ -157,8 +190,8 @@ function addEventOpenPopup() {
     })
 }
 function deletePopup() {
-    const popup = document.querySelector('.popup');
-    if(popup) popup.remove();
+    const POPUP = document.querySelector('.popup');
+    if(POPUP) POPUP.remove();
 }
 function closePopup() {
     deleteActiveClass('.overlay','active'); 
@@ -167,73 +200,35 @@ function closePopup() {
 }
 addEventOpenPopup();
 
-function toggleBurger() {
-    const btn = document.querySelector('.burger');
-    const overlay = document.querySelector('.overlay');
-    const nav_items = document.querySelectorAll('.navbar-list a');
-    const burger_overlay = document.querySelector('.burger-overlay');
-    btn.addEventListener('click', () => {
-        toggleActiveClass('.navbar', 'navbar-active');
-        toggleActiveClass('.burger', 'burger-active');
-        toggleActiveClass('.burger-overlay', 'active');
-        toggleActiveClass('body', 'active');
-        toggleActiveClass('.logo', 'active');
-    })
-    burger_overlay.addEventListener('click', (e) => {
-        deleteActiveClass('.navbar', 'navbar-active');
-        deleteActiveClass('.burger', 'burger-active');
-        deleteActiveClass('.burger-overlay', 'active');    
-        deleteActiveClass('body', 'active'); 
-        deleteActiveClass('.logo', 'active');    
-    })
-    overlay.addEventListener('click', (e) => {
-        deleteActiveClass('.overlay', 'active');    
-        deleteActiveClass('body', 'active'); 
-        closePopup();     
-    })
-    nav_items.forEach(item => item.addEventListener('click', () => {
-        deleteActiveClass('.navbar', 'navbar-active');
-        deleteActiveClass('.burger', 'burger-active');        
-        deleteActiveClass('.burger-overlay', 'active'); 
-        deleteActiveClass('body', 'active'); 
-        deleteActiveClass('.logo', 'active');
-    }))
-}
+const PREV = document.querySelector('.prev');
+const NEXT = document.querySelector('.next');
+const BTN_LAST_PAGE = document.querySelector('.next-max');
+const BTN_FIRST_PAGE = document.querySelector('.prev-max');
+const SLIDER_LIST_WRAPPER = document.querySelector('.wrapper-slider');
+const SLIDERS = SLIDER_LIST_WRAPPER.querySelectorAll('.slider-item');
+const CONTENT = document.querySelector('.content');
+const MAX = ['max',48,6,8];
+const MEDIUM = ['medium',48,8,6];
+const SMALL = ['small',48,16,3];
+const PAGE_OBJECT = {max: 1, medium: 1, small: 1};
 
-toggleBurger();
-
-const prev = document.querySelector('.prev'), 
-    next = document.querySelector('.next'), 
-    btnLastPage = document.querySelector('.next-max'), 
-    btnFirstPage = document.querySelector('.prev-max'), 
-    slider_list_wrapper = document.querySelector('.wrapper-slider'), 
-    sliders = slider_list_wrapper.querySelectorAll('.slider-item'), 
-    content = document.querySelector('.content'), 
-    max = ['max',48,6,8], 
-    medium = ['medium',48,8,6], 
-    small = ['small',48,16,3], 
-    pageObject = { 
-        max: 1, 
-        medium: 1, 
-        small: 1 
-    };
 let randomArray = [];
 
 createStartSlider();
 watchForWindow();
 
-content.addEventListener('click', (e) => {
-    const sliderList = document.querySelectorAll('.slider-list .slider-item');
-    const max = sliderList.length;
-    oneStepPage(e, sliderList, max);
-    toExtremePage(e, sliderList, max);
+CONTENT.addEventListener('click', (e) => {
+    const SLIDERlIST = document.querySelectorAll('.slider-list .slider-item');
+    const MAX = SLIDERlIST.length;
+    oneStepPage(e, SLIDERlIST, MAX);
+    toExtremePage(e, SLIDERlIST, MAX);
 });
 
 function createSlider(size = 'max', cards, slides, cardsOnSlide) {
-    slider_list_wrapper.innerHTML = '';
-    const newSliderList = document.createElement('ul');
-    newSliderList.classList.add(size, 'slider-list');
-    newSliderList.dataset.id = size;
+    SLIDER_LIST_WRAPPER.innerHTML = '';
+    const NEW_SLIDER_LIST = document.createElement('ul');
+    NEW_SLIDER_LIST.classList.add(size, 'slider-list');
+    NEW_SLIDER_LIST.dataset.id = size;
     if(randomArray.length === 0) randomArray = makeRandomArray(cards);
     for (let i = 0; i < slides; i++) {
         let newBlock = document.createElement('li');
@@ -241,41 +236,41 @@ function createSlider(size = 'max', cards, slides, cardsOnSlide) {
         for (let k = 0; k < cardsOnSlide; k++) {
             newBlock.append(createNewCard([randomArray[k + i*cardsOnSlide]]));
         }        
-        newSliderList.append(newBlock);
+        NEW_SLIDER_LIST.append(newBlock);
     }
-    slider_list_wrapper.append(newSliderList);
+    SLIDER_LIST_WRAPPER.append(NEW_SLIDER_LIST);
 
-    const sliderList = document.querySelectorAll('.slider-list .slider-item');
-    //changePageNumber(pageObject[size]);
-    showPage(sliderList, pageObject[size] - 1);
-    if(size == 'max' && pageObject[size] == 1) {
+    const SLIDER_LIST = document.querySelectorAll('.slider-list .slider-item');
+    changePageNumber(PAGE_OBJECT[size]);
+    showPage(SLIDER_LIST, PAGE_OBJECT[size] - 1);
+    if(size == 'max' && PAGE_OBJECT[size] == 1) {
         disablePrevAndEnableNext();
     }
-    else if(size == 'max' && pageObject[size] == 6) disableNextEneblePrev();
-    else if(size == 'medium' && pageObject[size] == 1) disablePrevAndEnableNext();
-    else if(size == 'medium' && pageObject[size] == 8) disableNextEneblePrev();
-    else if(size == 'small' && pageObject[size] == 1) disablePrevAndEnableNext();
-    else if(size == 'small' && pageObject[size] == 16) disableNextEneblePrev();
-    else eneblePrevAndNext();
+    else if(size == 'max' && PAGE_OBJECT[size] == 6) disableNextEnablePrev();
+    else if(size == 'medium' && PAGE_OBJECT[size] == 1) disablePrevAndEnableNext();
+    else if(size == 'medium' && PAGE_OBJECT[size] == 8) disableNextEnablePrev();
+    else if(size == 'small' && PAGE_OBJECT[size] == 1) disablePrevAndEnableNext();
+    else if(size == 'small' && PAGE_OBJECT[size] == 16) disableNextEnablePrev();
+    else enablePrevAndNext();
 }
 
 function createNewCard(i) {
-    const newCard = document.createElement('div');
-    newCard.classList.add('card');
-    newCard.setAttribute('data-name', `${data[i].name}`)
-    newCard.innerHTML = `
-        <img src='${data[i].img}' alt=${data[i].name}>
-        <span class="animal-name">${data[i].name}</span>
-        <button data-name='${data[i].name}' type="button">Learn more</button>
+    const NEW_CARD = document.createElement('div');
+    NEW_CARD.classList.add('card');
+    NEW_CARD.setAttribute('data-name', `${DATA[i].name}`)
+    NEW_CARD.innerHTML = `
+        <img src='${DATA[i].img}' alt=${DATA[i].name}>
+        <span class="animal-name">${DATA[i].name}</span>
+        <button data-name='${DATA[i].name}' type="button">Learn more</button>
     `
-    return newCard;
+    return NEW_CARD;
 }
 function createStartSlider() {
     disableBtn('prev');
-    //disableBtn('prev-max');
-    if(window.innerWidth >= 1280) createSlider(...max);
-    else if(window.innerWidth >= 768 && window.innerWidth < 1280) createSlider(...medium);
-    else if(window.innerWidth < 768) createSlider(...small);
+    disableBtn('prev-max');
+    if(window.innerWidth >= 1280) createSlider(...MAX);
+    else if(window.innerWidth >= 768 && window.innerWidth < 1280) createSlider(...MEDIUM);
+    else if(window.innerWidth < 768) createSlider(...SMALL);
 }
 function showPage(sliderList, number) {
     sliderList.forEach(item => item.style = null)
@@ -284,34 +279,34 @@ function showPage(sliderList, number) {
 }
 function oneStepPage(e, sliderList, max) {
     let sliderId = document.querySelector('.slider-list').dataset.id;
-    if(e.target.classList.contains('next') && pageObject[sliderId] < max) { 
-        pageObject[sliderId]++;
-        changePageNumber(pageObject[sliderId]);
-        showPage(sliderList, pageObject[sliderId] - 1)
-        if (pageObject[sliderId] == max) { 
+    if(e.target.classList.contains('next') && PAGE_OBJECT[sliderId] < max) { 
+        PAGE_OBJECT[sliderId]++;
+        changePageNumber(PAGE_OBJECT[sliderId]);
+        showPage(sliderList, PAGE_OBJECT[sliderId] - 1)
+        if (PAGE_OBJECT[sliderId] == max) { 
             disableBtn('next');
             disableBtn('next-max');
-        } else if(pageObject[sliderId] == 2) { 
+        } else if(PAGE_OBJECT[sliderId] == 2) { 
             enableBtn('prev-max'); 
             enableBtn('prev');
         }
-    } else if(e.target.classList.contains('prev') && pageObject[sliderId] > 1) {
-        if(pageObject[sliderId] == 2) { 
+    } else if(e.target.classList.contains('prev') && PAGE_OBJECT[sliderId] > 1) {
+        if(PAGE_OBJECT[sliderId] == 2) { 
             disableBtn('prev');
             disableBtn('prev-max');
-        } else if(pageObject[sliderId] == max) {
+        } else if(PAGE_OBJECT[sliderId] == max) {
             enableBtn('next-max');
             enableBtn('next');
         }
-        pageObject[sliderId]--;
-        changePageNumber(pageObject[sliderId]);
-        showPage(sliderList, pageObject[sliderId] - 1);
+        PAGE_OBJECT[sliderId]--;
+        changePageNumber(PAGE_OBJECT[sliderId]);
+        showPage(sliderList, PAGE_OBJECT[sliderId] - 1);
         
     }
 }
 function toPage(number) {
     let sliderId = document.querySelector('.slider-list').dataset.id;
-    pageObject[sliderId] = number;
+    PAGE_OBJECT[sliderId] = number;
     changePageNumber(number);
 }
 function toExtremePage(e, sliderList, max) {
@@ -335,15 +330,15 @@ function toExtremePage(e, sliderList, max) {
 function makeRandomArray(count) {
     let array6 = [];
     let array8 = [];
-    const finishArray = [];
+    const FINISH_ARRAY = [];
     function addNumber() {
-        const random = Math.floor(Math.random()*8);
-        const isRelevant6 = !array6.includes(random);
-        const isRelevant8 = !array8.includes(random);
-        if(isRelevant6 && isRelevant8) {
-            finishArray.push(random);
-            array6.push(random);
-            array8.push(random);
+        const RANDOM = Math.floor(Math.random()*8);
+        const IS_RELEVANT6 = !array6.includes(RANDOM);
+        const IS_RELEVANT8 = !array8.includes(RANDOM);
+        if(IS_RELEVANT6 && IS_RELEVANT8) {
+            FINISH_ARRAY.push(RANDOM);
+            array6.push(RANDOM);
+            array8.push(RANDOM);
             if(array6.length > 6) array6.shift();
             if(array8.length > 7) array8 = [];
         } else {
@@ -353,21 +348,21 @@ function makeRandomArray(count) {
     for(let i = 1 ; i <= count; i++) {
         addNumber();
     }
-    return finishArray;
+    return FINISH_ARRAY;
 }
 function watchForWindow() {
     window.addEventListener('resize', () => {
-        let isMax = slider_list_wrapper.querySelector('.max');
-        let isMedium = slider_list_wrapper.querySelector('.medium');
-        let isSmall = slider_list_wrapper.querySelector('.small');
-        if(window.innerWidth >= 1280 && !isMax) createSlider(...max);
-        else if(window.innerWidth >= 768 && window.innerWidth < 1280 && !isMedium) createSlider(...medium);
-        else if(window.innerWidth < 768 && !isSmall) createSlider(...small);
+        let isMax = SLIDER_LIST_WRAPPER.querySelector('.max');
+        let isMedium = SLIDER_LIST_WRAPPER.querySelector('.medium');
+        let isSmall = SLIDER_LIST_WRAPPER.querySelector('.small');
+        if(window.innerWidth >= 1280 && !isMax) createSlider(...MAX);
+        else if(window.innerWidth >= 768 && window.innerWidth < 1280 && !isMedium) createSlider(...MEDIUM);
+        else if(window.innerWidth < 768 && !isSmall) createSlider(...SMALL);
     })
 }
 function changePageNumber(number) {
-    const pageNumberBlock = document.querySelector('.page');
-    pageNumberBlock.innerHTML = number;
+    const PAGE_NUMBER_BLOCK = document.querySelector('.page');
+    PAGE_NUMBER_BLOCK.innerHTML = number;
 }
 function disableBtn(className) {
     document.querySelector(`.${className}`).disabled = true;
@@ -381,13 +376,13 @@ function disablePrevAndEnableNext() {
     enableBtn('next');
     enableBtn('next-max');
 }
-function disableNextEneblePrev() {
+function disableNextEnablePrev() {
     disableBtn('next-max');
     disableBtn('next');
     enableBtn('prev');
     enableBtn('prev-max');
 }
-function eneblePrevAndNext() {
+function enablePrevAndNext() {
     enableBtn('prev');
     enableBtn('prev-max');
     enableBtn('next');

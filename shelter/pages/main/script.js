@@ -1,6 +1,5 @@
-'use strict'
-
-const data = JSON.parse(`[
+const DATA = JSON.parse(
+  `[
     {
       "name": "Jennifer",
       "img": "../../assets/images/pets-jennifer.png",
@@ -90,25 +89,51 @@ const data = JSON.parse(`[
       "parasites": ["lice", "fleas"]
     }
   ]`
-); 
+);
 
 function toggleActiveClass(classNameBlock,toggleClassName) {
-    const block = document.querySelector(classNameBlock);
-    if(block.classList.contains(toggleClassName)) block.classList.remove(toggleClassName)
-    else block.classList.add(toggleClassName)
+    const BLOCK = document.querySelector(classNameBlock);
+    if(BLOCK.classList.contains(toggleClassName)) BLOCK.classList.remove(toggleClassName)
+    else BLOCK.classList.add(toggleClassName)
 }
 function deleteActiveClass(classNameBlock,toggleClassName) {
-    const block = document.querySelector(classNameBlock);
-    if(block.classList.contains(toggleClassName)) block.classList.remove(toggleClassName)
+    const BLOCK = document.querySelector(classNameBlock);
+    if(BLOCK.classList.contains(toggleClassName)) BLOCK.classList.remove(toggleClassName)
 }
 function addActiveClass(classNameBlock,toggleClassName) {
-    const block = document.querySelector(classNameBlock);
-    if(!block.classList.contains(toggleClassName)) block.classList.add(toggleClassName)
+    const BLOCK = document.querySelector(classNameBlock);
+    if(!BLOCK.classList.contains(toggleClassName)) BLOCK.classList.add(toggleClassName)
 }
 
+function toggleBurger() {
+    const BTN = document.querySelector('.burger');
+    const OVERLAY = document.querySelector('.overlay');
+    const NAV_ITEMS = document.querySelectorAll('.navbar-list a');
+    BTN.addEventListener('click', () => {
+        toggleActiveClass('.navbar', 'navbar-active');
+        toggleActiveClass('.burger', 'burger-active');
+        toggleActiveClass('.overlay', 'active');
+        toggleActiveClass('body', 'active');
+    })
+    OVERLAY.addEventListener('click', (e) => {
+        deleteActiveClass('.navbar', 'navbar-active');
+        deleteActiveClass('.burger', 'burger-active');
+        deleteActiveClass('.overlay', 'active');  
+        deleteActiveClass('body', 'active'); 
+        closePopup();     
+    })
+    NAV_ITEMS.forEach(item => item.addEventListener('click', () => {
+        deleteActiveClass('.navbar', 'navbar-active');
+        deleteActiveClass('.burger', 'burger-active');
+        deleteActiveClass('.overlay', 'active');  
+        deleteActiveClass('body', 'active'); 
+    }))
+}
+toggleBurger();
+
 function addEventClosePopup() {
-    const closeBtn = document.querySelector('.popup_close-btn');
-    closeBtn.addEventListener('click', () => {
+    const CLOSE_BTN = document.querySelector('.popup_close-btn');
+    CLOSE_BTN.addEventListener('click', () => {
         closePopup();
     })
     
@@ -122,32 +147,32 @@ function arrayToString(array) {
     return string;
 }
 function createPopup(name) {
-    const person = data.filter(item => item.name == name)[0];
-    const newBlock = document.createElement('div');
-    newBlock.classList.add('popup')
-    newBlock.innerHTML = `<button type="button" class="popup_close-btn"></button>     
+    const PERSON = DATA.filter(item => item.name == name)[0];
+    const NEW_BLOCK = document.createElement('div');
+    NEW_BLOCK.classList.add('popup')
+    NEW_BLOCK.innerHTML = `<button type="button" class="popup_close-btn"></button>     
         <div class="popup_img">
-            <img src=${person.img} alt=${person.name}>
+            <img src=${PERSON.img} alt=${PERSON.name}>
         </div>
         <div class="popup_description">            
             <div class="popup_description_breed">
-                <h4 class="name-animal">${person.name}</h4>
-                <p><span class="animal-type">${person.type}</span> - <span class="animal-breed">${person.breed}</span>
+                <h4 class="name-animal">${PERSON.name}</h4>
+                <p><span class="animal-type">${PERSON.type}</span> - <span class="animal-breed">${PERSON.breed}</span>
                 </p>
             </div>
-            <p class="popup_description_text">${person.description}</p>
+            <p class="popup_description_text">${PERSON.description}</p>
             <ul class="popup_description_list">
-                <li class="list-item">Age: <span class="dinamic age">${person.age}</span></li>
-                <li class="list-item">Inoculations: <span class="dinamic inoculations">${arrayToString(person.inoculations)}</span></li>
-                <li class="list-item">Diseases: <span class="diseases dinamic">${arrayToString(person.diseases)}</span></li>
-                <li class="list-item">Parasites: <span class="dinamic parasites">${arrayToString(person.parasites)}</span></li>
+                <li class="list-item">Age: <span class="dinamic age">${PERSON.age}</span></li>
+                <li class="list-item">Inoculations: <span class="dinamic inoculations">${arrayToString(PERSON.inoculations)}</span></li>
+                <li class="list-item">Diseases: <span class="diseases dinamic">${arrayToString(PERSON.diseases)}</span></li>
+                <li class="list-item">Parasites: <span class="dinamic parasites">${arrayToString(PERSON.parasites)}</span></li>
             </ul>
         </div>`;
-    document.querySelector('body').prepend(newBlock);
+    document.querySelector('body').prepend(NEW_BLOCK);
 }
 function openPopup() {
-    const slider = document.querySelector('.our-friends_slider_wrapper');
-    slider.addEventListener('click', (e) => {
+    const SLIDER_POPUP = document.querySelector('.our-friends_slider_wrapper');
+    SLIDER_POPUP.addEventListener('click', (e) => {
         let card = e.target.closest('.our-friends_slider_cards_card');
         if(e.target.classList.contains('our-friends_slider_cards_card') || card) {
             createPopup(card.dataset.name);
@@ -163,72 +188,45 @@ function closePopup() {
     deletePopup();
 }
 function deletePopup() {
-    const popup = document.querySelector('.popup');
-    if(popup) popup.remove();
+    const POPUP = document.querySelector('.popup');
+    if(POPUP) POPUP.remove();
 }
 openPopup()
-function toggleBurger() {
-    const btn = document.querySelector('.burger');
-    const overlay = document.querySelector('.overlay');
-    const nav_items = document.querySelectorAll('.navbar-list a');
-    btn.addEventListener('click', () => {
-        toggleActiveClass('.navbar', 'navbar-active');
-        toggleActiveClass('.burger', 'burger-active');
-        toggleActiveClass('.overlay', 'active');
-        toggleActiveClass('body', 'active');
-    })
-    overlay.addEventListener('click', (e) => {
-        deleteActiveClass('.navbar', 'navbar-active');
-        deleteActiveClass('.burger', 'burger-active');
-        deleteActiveClass('.overlay', 'active');  
-        deleteActiveClass('body', 'active'); 
-        closePopup();     
-    })
-    nav_items.forEach(item => item.addEventListener('click', () => {
-        deleteActiveClass('.navbar', 'navbar-active');
-        deleteActiveClass('.burger', 'burger-active');
-        deleteActiveClass('.overlay', 'active');  
-        deleteActiveClass('body', 'active'); 
-    }))
-}
-
-toggleBurger();
 
 function slider() {
-    const slider = document.querySelector('.our-friends_slider_wrapper');
+    const SLIDER = document.querySelector('.our-friends_slider_wrapper');
+    const NEXT = document.querySelector('.btn-right');
+    const PREV = document.querySelector('.btn-left');
     let arrayWithCardsNameRight = [];
     let arrayWithCardsNameLeft = [];
-    const next = document.querySelector('.btn-right'),
-          prev = document.querySelector('.btn-left');
     
-    
-    next.addEventListener('click', () => {
+    NEXT.addEventListener('click', () => {
         toSwipe('right');
     });
-    prev.addEventListener('click', () => {
+    PREV.addEventListener('click', () => {
         toSwipe('left');
     });
     function createNewSlide(direction = null) {
         
-        const newSlide = document.createElement('div');
-        newSlide.classList.add('our-friends_slider_cards');
+        const NEW_SLIDE = document.createElement('div');
+        NEW_SLIDE.classList.add('our-friends_slider_cards');
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
         }
         
         function addNewCardInSlider(direction = null) {
-            const random = getRandomInt(8);
+            const RANDOM = getRandomInt(8);
             if(direction == 'right') {
-                const sliders = slider.querySelectorAll('.our-friends_slider_cards');
-                const lastSlide = [...sliders][[...sliders].length - 1];
-                const firstThreeCards = lastSlide.querySelectorAll('.our-friends_slider_cards_card .animal-name');
+                const SLIDERS = SLIDER.querySelectorAll('.our-friends_slider_cards');
+                const LAST_SLIDE = [...SLIDERS][[...SLIDERS].length - 1];
+                const FIRST_THREE_CARDS = LAST_SLIDE.querySelectorAll('.our-friends_slider_cards_card .animal-name');
                 for(let j = 0; j < 3; j++) {
-                    arrayWithCardsNameRight[j] = firstThreeCards[j].innerHTML;
+                    arrayWithCardsNameRight[j] = FIRST_THREE_CARDS[j].innerHTML;
                 }
-                if(!arrayWithCardsNameRight.includes(data[random].name)) {
-                    newSlide.append(createNewCard(random));
-                    arrayWithCardsNameRight.push(data[random].name);
+                if(!arrayWithCardsNameRight.includes(DATA[RANDOM].name)) {
+                    NEW_SLIDE.append(createNewCard(RANDOM));
+                    arrayWithCardsNameRight.push(DATA[RANDOM].name);
                     if(arrayWithCardsNameRight.length > 5) {
                         arrayWithCardsNameRight.shift();
                     }
@@ -236,14 +234,14 @@ function slider() {
                     addNewCardInSlider(direction);
                 }
             } else if (direction == 'left') {
-                const firstSlide = slider.querySelector('.our-friends_slider_cards');
-                const firstThreeCards = firstSlide.querySelectorAll('.our-friends_slider_cards_card .animal-name');
+                const FIRST_SLIDE = SLIDER.querySelector('.our-friends_slider_cards');
+                const FIRST_THREE_CARDS = FIRST_SLIDE.querySelectorAll('.our-friends_slider_cards_card .animal-name');
                 for(let j = 0; j < 3; j++) {
-                    arrayWithCardsNameLeft[j] = firstThreeCards[j].innerHTML;
+                    arrayWithCardsNameLeft[j] = FIRST_THREE_CARDS[j].innerHTML;
                 }
-                if(!arrayWithCardsNameLeft.includes(data[random].name)) {
-                    newSlide.append(createNewCard(random));
-                    arrayWithCardsNameLeft.push(data[random].name);
+                if(!arrayWithCardsNameLeft.includes(DATA[RANDOM].name)) {
+                    NEW_SLIDE.append(createNewCard(RANDOM));
+                    arrayWithCardsNameLeft.push(DATA[RANDOM].name);
                     if(arrayWithCardsNameLeft.length > 5) {
                         arrayWithCardsNameLeft.shift();
                     }
@@ -251,54 +249,52 @@ function slider() {
                     addNewCardInSlider(direction);
                 }
             } else {
-                if(!arrayWithCardsNameRight.includes(data[random].name)) {
-                    newSlide.append(createNewCard(random));
-                    arrayWithCardsNameRight.push(data[random].name);
+                if(!arrayWithCardsNameRight.includes(DATA[RANDOM].name)) {
+                    NEW_SLIDE.append(createNewCard(RANDOM));
+                    arrayWithCardsNameRight.push(DATA[RANDOM].name);
                     if(arrayWithCardsNameRight.length > 5) arrayWithCardsNameRight.shift();
-                }
-                else {
+                } else {
                     addNewCardInSlider(direction);
                 }
             }
         }     
 
         function createNewCard(i) {
-            const newCard = document.createElement('div');
-            newCard.classList.add('our-friends_slider_cards_card');            
-            newCard.setAttribute('data-name', `${data[i].name}`)
-            newCard.innerHTML = `
-                <img src='${data[i].img}' alt=${data[i].name}>
-                <span class="animal-name">${data[i].name}</span>
-                <button data-name='${data[i].name}' type="button">Learn more</button>
+            const NEW_CARD = document.createElement('div');
+            NEW_CARD.classList.add('our-friends_slider_cards_card');            
+            NEW_CARD.setAttribute('data-name', `${DATA[i].name}`)
+            NEW_CARD.innerHTML = `
+                <img src='${DATA[i].img}' alt=${DATA[i].name}>
+                <span class="animal-name">${DATA[i].name}</span>
+                <button data-name='${DATA[i].name}' type="button">Learn more</button>
             `
-            return newCard;
+            return NEW_CARD;
         }
         
         for(let i = 0; i < 3; i++) {
             addNewCardInSlider(direction);
         }
 
-        return newSlide;
+        return NEW_SLIDE;
     }
     function toSwipe(direction) {
         if(direction == 'right') {   
             arrayWithCardsNameRight = [];         
-            slider.firstElementChild.remove();
-            slider.append(createNewSlide(direction));
+            SLIDER.firstElementChild.remove();
+            SLIDER.append(createNewSlide(direction));
         } else if (direction == 'left') { 
             arrayWithCardsNameLeft = [];           
-            slider.lastElementChild.remove();
-            slider.prepend(createNewSlide(direction));
+            SLIDER.lastElementChild.remove();
+            SLIDER.prepend(createNewSlide(direction));
         }
     }
 
     function createStartPageSlider() {
         for( let i = 0; i < 5; i++) {
-            slider.append(createNewSlide());
+            SLIDER.append(createNewSlide());
         }
     }
 
     createStartPageSlider();
 }
-
 slider()
