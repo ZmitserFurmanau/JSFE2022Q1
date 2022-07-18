@@ -74,7 +74,7 @@ export const PizzaBlock: React.FC<IPizza> = ({
                   className={curSize === size ? styles.active : 'disabled'}
                   key={size}
                   onClick={() => curSize !== size && setCurSize(size)}>
-                  {size} cm.
+                  {size} cm
                 </li>
               ))}
           </ul>

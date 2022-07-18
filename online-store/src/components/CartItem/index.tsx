@@ -22,7 +22,7 @@ export const CartItem: React.FC<CartItemProps> = ({ pizza }) => {
         <div className={styles.text}>
           <h3>{pizza.value.title}</h3>
           <p>
-            {pizzaTypes[pizza.value.type].name}, {pizza.value.size} cm.
+            {pizzaTypes[pizza.value.type].name}, {pizza.value.size} cm
           </p>
         </div>
       </div>
