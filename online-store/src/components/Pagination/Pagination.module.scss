@@ -4,6 +4,22 @@
   li {
     border-radius: 50%;
 
+    @media (max-width: 392px) {
+      margin: 3px !important;
+    }
+
+    @media (max-width: 380px) {
+      margin: 2px !important;
+    }
+
+    @media (max-width: 360px) {
+      margin: 1px !important;
+    }
+
+    @media (max-width: 340px) {
+      margin: 0px !important;
+    }
+
     button {
       border-radius: 50% !important;
     }

@@ -17,5 +17,10 @@
   .year {
     color: #7b7b7b;
     margin-top: 5px;
+    margin-inline: 10px;
+
+    @media (max-width: 360px) {
+      text-align: center;
+    }
   }
 }
