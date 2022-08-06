@@ -3,7 +3,10 @@ import axios from 'axios';
 import { getCar } from '../../utils/config';
 import { IUpdateCarProps } from '../../utils/types';
 import {
-  Container, CarName, CarColor, Button,
+  Container,
+  CarName,
+  CarColor,
+  Button,
 } from './CreateCar';
 
 export const UpdateCar = ({

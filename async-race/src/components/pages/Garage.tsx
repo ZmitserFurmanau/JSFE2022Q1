@@ -1,16 +1,21 @@
 import styled, { css, keyframes } from 'styled-components';
 import React, {
-  useCallback, useEffect, useReducer, useState,
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
 } from 'react';
 import axios from 'axios';
 import {
-  GARAGE, getPageCars, getWinner, LIMIT_GARAGE, WINNERS,
+  GARAGE,
+  getPageCars,
+  getWinner,
+  LIMIT_GARAGE,
+  WINNERS,
 } from '../../utils/config';
 import { UpdateCar } from '../Garage/UpdateCar';
 import { Button, Container, CreateCar } from '../Garage/CreateCar';
-import {
-  ICar, IGarageProps, INewWinner,
-} from '../../utils/types';
+import { ICar, IGarageProps, INewWinner } from '../../utils/types';
 import { Car } from '../Garage/Car';
 import { Pagination } from '../global/Pagination';
 import { GenerateCars } from '../Garage/GenerateCars';

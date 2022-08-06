@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import React, {
-  useCallback, useEffect, useState,
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { IWinner, IWinnersConfig, IWinnersProps } from '../../utils/types';
 import { Pagination } from '../global/Pagination';
 import {
-  getPageCars, getWinners, LIMIT_WINNERS, orderPick,
+  getPageCars,
+  getWinners,
+  LIMIT_WINNERS,
+  orderPick,
 } from '../../utils/config';
 
 import { Car } from '../Winners/Car';
@@ -39,7 +40,7 @@ const WinsCeil = styled.th <{ config: IWinnersConfig }>`
   cursor: pointer;
   box-shadow: ${({ config }) => (config.sort === 'wins' ? '0 0 2em 2em #b3065c inset' : 'inherit')};
   &::before {
-    content: ${({ config }) => (config.order === 'ASC' ? '"Сортировка: по возврастанию"' : '"Сортировка: по убыванию"')};
+    content: ${({ config }) => (config.order === 'ASC' ? '"Sort by best"' : '"Sort by worst"')};
     position: absolute;
     top: -1.5em;
     left: 0;

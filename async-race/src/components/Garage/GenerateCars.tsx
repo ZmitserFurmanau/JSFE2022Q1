@@ -5,14 +5,37 @@ import { ReturnPromiseVoid } from '../../utils/types';
 import { Button } from './CreateCar';
 
 const randomCarName = () => {
-  const manufactures = ['Volkswagen', 'Volvo', 'Tesla', 'BMW', 'Audi', 'Toyota', 'Skoda', 'Rolls-Royce', 'Renault', 'Pontiac'];
-  const models = ['Traveller', 'Rifter', 'Cascada', 'Navara', 'Outlander', 'Montego', 'Aviator', 'GX', 'Carnival', 'Genesis'];
+  const manufactures = [
+    'Volkswagen',
+    'Volvo',
+    'Tesla',
+    'BMW',
+    'Audi',
+    'Toyota',
+    'Skoda',
+    'Rolls-Royce',
+    'Renault',
+    'Pontiac',
+  ];
+  const models = [
+    'Traveller',
+    'Rifter',
+    'Cascada',
+    'Navara',
+    'Outlander',
+    'Montego',
+    'Aviator',
+    'GX',
+    'Carnival',
+    'Genesis',
+  ];
   const manufacture = manufactures[Math.floor(Math.random() * manufactures.length)];
   const model = models[Math.floor(Math.random() * models.length)];
   return `${manufacture} ${model}`;
 };
 
-const randomCarColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+const COLORS = 16777215;
+const randomCarColor = () => `#${Math.floor(Math.random() * COLORS).toString(16)}`;
 
 export const GenerateCars = ({ changeGarage, isDisabled }:
 { changeGarage: ReturnPromiseVoid, isDisabled: boolean }) => {

@@ -154,13 +154,13 @@ export const Car = ({
             disabled={isDisablebStart}
             onClick={async () => startTrack()}
           >
-            A
+            Start
           </Button>
           <Button
             disabled={isDisablebReset}
             onClick={async () => resetTrack()}
           >
-            B
+            Reset
           </Button>
         </Controls>
         <Model duration={duration} isDrive={isDrive}>

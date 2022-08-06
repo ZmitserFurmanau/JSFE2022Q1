@@ -1,7 +1,6 @@
 # Async Race project
 
-- For the application to work, you need to deploy a mock server
-- **[AsyncRaceAPI](https://github.com/mikhama/async-race-api)**
+- For the application to work, you need to deploy a mock **[server](https://github.com/mikhama/async-race-api)**
 
 ## Setup and Running
 

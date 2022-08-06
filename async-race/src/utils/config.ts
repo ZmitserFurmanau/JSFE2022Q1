@@ -1,6 +1,6 @@
 import { IOrderPick } from './types';
 
-const BASE = 'https://zmitserfurmanau-async-race.netlify.app';
+const BASE = 'http://localhost:3000/';
 
 export const GARAGE = `${BASE}garage`;
 
