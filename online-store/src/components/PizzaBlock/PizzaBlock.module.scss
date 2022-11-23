@@ -1,0 +1,99 @@
+@import '../../scss/variables';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba($color: #f3f3f3, $alpha: 1.0);
+  border-radius: 10px;
+  transition: all $duration ease-in-out;
+
+  &:hover {
+    border: 1px solid rgba($color: $orange, $alpha: 0.1);
+    box-shadow: 0 14px 28px rgba($color: $orange, $alpha: 0.01), 0 10px 10px rgba($color: $orange, $alpha: 0.07);
+  }
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  min-height: 525px;
+  text-align: center;
+  position: relative;
+
+  .image {
+    width: 260px;
+    height: 180px;
+    position: absolute;
+    top: 0;
+  }
+
+  .label {
+    text-align: left;
+    padding: 0 17px;
+    margin-top: 190px;
+    min-height: 163px;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1%;
+    margin-bottom: 5px;
+  }
+
+  .description {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.33;
+  }
+
+  .selector {
+    display: flex;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 8px 6px;
+
+    ul {
+      display: flex;
+      flex: 1;
+      margin: 0;
+
+      &:first-of-type {
+        margin-bottom: 6px;
+      }
+
+      li {
+        padding: 8px;
+        flex: 1;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .active {
+    background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 7px;
+    cursor: default !important;
+    @include noselect();
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+
+  .price {
+    margin-left: 3px;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: 0.015em;
+  }
+}

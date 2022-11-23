@@ -1,0 +1,26 @@
+@import '../../scss/variables';
+
+.footer {
+  border-top: 1px solid $gray-line;
+  padding: 30px 60px;
+
+  @media (max-width: 500px) {
+    padding: 25px;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .year {
+    color: #7b7b7b;
+    margin-top: 5px;
+    margin-inline: 10px;
+
+    @media (max-width: 360px) {
+      text-align: center;
+    }
+  }
+}
